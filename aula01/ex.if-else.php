@@ -1,6 +1,6 @@
 <?php
 
-$idade = readline 'Digite sua idade';
+$idade = readline( 'Digite sua idade');
 
 if($idade >=17){
 	echo 'Voce é menor de idade' . PHP_EOL;
