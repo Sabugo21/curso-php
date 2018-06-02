@@ -1,10 +1,9 @@
 <?php
-
-session_start();
-
-if(!$_SESSION['logado']){
-	header('location: login.php');
-}
+	session_start();
+	if (!$_SESSION['logado']) {
+		header('location: login.php');
+	}
+	$nome = $_SESSION['nome'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +13,6 @@ if(!$_SESSION['logado']){
 <body>
 <p><a href="logout.php">Logout</a></p>
 <h1>Admin</h1>
-<p>Bem vindo, <strong>???</strong></p>
+<p>Bem vindo, <strong><?= $nome ?></strong></p>
 </body>
 </html>
