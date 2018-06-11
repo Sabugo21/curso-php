@@ -1,20 +1,24 @@
 <?php 
-require 'conexao.php';
-/* 
-	nome
-	email
-	senha
-*/
-$nome = 'Paula Maria';
-$email = 'paula.maria@4linux.com.br';
-$senha = '123';
-$query = "INSERT INTO usuarios(nome,email,senha) VALUES ('{$nome}','{$email}', '{$senha}')";
-echo '<pre>';
-echo $query;
-echo '<br>';
-$result = mysqli_query($con,$query);
-if($result){
-	echo 'Ok';
-} else {
-	echo 'Erro ao inserir';
+require_once 'banco.php';
+if (!empty($_POST)) {
+	$dados = [
+		'nome' => $_POST['nome'],
+		'email' => $_POST['email'], 
+		'senha' => $_POST['senha']
+	];
+	$id = $_POST['id'] ?? null;
+	if($id){
+		if(editar('usuarios', $dados, "id={$id}")){
+			echo '<p>Editado Com Sucesso</p>';
+		} else {
+			echo '<p>Erro ao Editar</p>';
+		}
+	} else {
+		if(inserir('usuarios', $dados)){
+			echo '<p>Inserido Com Sucesso</p>';
+		} else {
+			echo '<p>Erro ao Inserir</p>';
+		}
+	}
+	
 }
